@@ -1,0 +1,24 @@
+﻿@model IEnumerable<GoodBooksMvc.Models.Book>
+@{
+    var chosenBooks = ViewBag.ChosenBooks as List<Book>;
+    var otherBooks = ViewBag.OtherBooks as List<Book>;
+    var compareBooks = ViewBag.CompareBooks as HashSet<string>;
+}
+<h1>Books</h1>
+
+<h2>Compare Books</h2>
+@foreach(var book in chosenBooks)
+{
+    <p>@book.Title</p>
+    <a href="@Url.Action("ToggleCompare", "Books", new {id = book.Id})">Remove</a>
+}
+
+<h2>Books</h2>
+@foreach (var book in Model)
+{
+    <p>@book.Title</p>
+    @if (!compareBooks.Contains(book.Id.ToString()))
+    {
+        <a href="@Url.Action("ToggleCompare", "Books", new {id = book.Id})">Compare</a>
+    }
+}

@@ -1,4 +1,5 @@
-﻿using GoodBooksMvc.Models;
+﻿using GoodBooksMvc.DataAccess;
+using GoodBooksMvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,6 +16,13 @@ namespace GoodBooksMvc.Controllers
 
         public IActionResult Index()
         {
+            /* Doesn't Work
+            int count = 1;
+            count++;
+            HttpContext.Session.SetString("counter", count.ToString());
+            Response.Cookies.Append("counter", count.ToString());
+            ViewData["visitCount"] = Request.Cookies["Counter"];
+            */
             return View();
         }
 
